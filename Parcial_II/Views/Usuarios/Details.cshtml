@@ -1,0 +1,36 @@
+﻿@model Parcial_II.Models.Usuario
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clave)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rol.Nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.UsuarioId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

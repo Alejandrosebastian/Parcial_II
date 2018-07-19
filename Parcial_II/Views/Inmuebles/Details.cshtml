@@ -1,0 +1,60 @@
+﻿@model Parcial_II.Models.Inmuebles
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Inmuebles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.N_habitaciones)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.N_habitaciones)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Costo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Parroquia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Parroquia.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Propietario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Propietario.Apellido1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipos_inmu)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipos_inmu.nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.InmueblesId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

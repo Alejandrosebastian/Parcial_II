@@ -1,0 +1,61 @@
+﻿@model Parcial_II.Models.Contrato
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Contrato</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="deposito" class="control-label"></label>
+                <input asp-for="deposito" class="form-control" />
+                <span asp-validation-for="deposito" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duracion" class="control-label"></label>
+                <input asp-for="Duracion" class="form-control" />
+                <span asp-validation-for="Duracion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fecha_ini" class="control-label"></label>
+                <input asp-for="fecha_ini" class="form-control" />
+                <span asp-validation-for="fecha_ini" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fecha_vence" class="control-label"></label>
+                <input asp-for="fecha_vence" class="form-control" />
+                <span asp-validation-for="fecha_vence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipopagosId" class="control-label"></label>
+                <input asp-for="TipopagosId" class="form-control" />
+                <span asp-validation-for="TipopagosId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SucursalId" class="control-label"></label>
+                <select asp-for="SucursalId" class ="form-control" asp-items="ViewBag.SucursalId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClienteId" class="control-label"></label>
+                <select asp-for="ClienteId" class ="form-control" asp-items="ViewBag.ClienteId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

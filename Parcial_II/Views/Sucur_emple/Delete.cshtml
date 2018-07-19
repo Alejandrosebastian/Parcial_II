@@ -1,0 +1,33 @@
+﻿@model Parcial_II.Models.Sucur_emple
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sucur_emple</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SucursualesId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SucursualesId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Empleado.Correo)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Sucur_empleId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
