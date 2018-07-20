@@ -78,11 +78,11 @@ var guardarpropietario = () => {
 var guardaCiudad = () => {
     var Nombre = document.getElementById('Nombre').value;
     var CiudadId = document.getElementById('CiudadId').value;
-    if (CiudadId == '') {
+    if (CiudadId === '') {
         CiudadId = '0';
         var accion = 'Ciudads/ControladorGuardaCiudad';
     } else {
-        var accion = '';
+        var accion = 'Ciudads/ControladorGuardaCiudad';
     }
     var graba = new ClaseCiudad(Nombre, accion);
     graba.guardaciudad(CiudadId);
@@ -99,9 +99,14 @@ var CargaCliente = (ClienteId) => {
     var clsclien = new Claseclientejs('', '', '', '', '', '', '','','','','', accion);
     clsclien.CargarCliente(ClienteId);
 }
-<<<<<<< HEAD
 
-=======
+var CargaCidad = () => {
+    var accion = 'Ciudads/ControlunaCiudad';
+    var clsciud = new ClaseCiudad('', accion);
+    clsciud.CargaCiudad(CiudadId);
+}
+
+
 var grabaTipo_inmu = () => {
     var nombre = document.getElementById('nombre').value;
     var inmuId = document.getElementById('tipoinmuId').value;
@@ -117,13 +122,17 @@ var grabaTipo_inmu = () => {
     var graba = new ClaseTipoinmu(nombre, accion);
     graba.GuardarTipoinmu(inmuId);
 }
->>>>>>> f8b6b83b2181ce9db136b26e83061318d48e3bc3
+
 var ListaTipo_inmu = () => {
     var accion = 'Tipos_inmus/ControladorListaTipo_inmu';
     var tipoinmu = new ClaseTipoinmu('', accion);
     tipoinmu.ListadeTipoinmu();
 }
-
+var ListaCiudad = () => {
+    var accion = 'Ciudads/Controladorlistaindexciud';
+    var ciudad = new ClaseCiudad('', accion);
+    ciudad.ListaCiudad();
+}
 var CargaTipoinmu = (tipoinmuId) => {
     var accion = 'Tipos_inmus/ControladorUnTipoinmu';
     var untipoinmu = new ClaseTipoinmu('', accion);
@@ -185,6 +194,12 @@ var ListaCliente = () => {
     var accion = 'Clientes/Controladorlistaindexcliente';
     var cliente = new Claseclientejs('', '', '', '', '', '', '', '', '', '','', accion);
     cliente.listarcliente();
+
+}
+var listaCiudades = (CiudadId) => {
+    var accion = 'Ciudads/Controladorlistaindexciud';
+    var ciudad = new ClaseCiudad('', accion);
+    ciudad.listaindex(CiudadId);
 }
 
 var CargaInmueble = (inmuebleId) => {

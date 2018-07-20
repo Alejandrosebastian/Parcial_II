@@ -60,7 +60,7 @@ namespace Parcial_II.Models
                 html +="<tr class='info'>"+
                     "<td>" + item.Nombre + "<td>" +
                     "<td>" + item.CiudadId + "<td>" +
-                    "<td>" + "<a class='btn btn-succes' data->data-toggle='modal' data-target='#Ingresociudad' onclick='Cargaprie(" + item.CiudadId + ")'>Editar</a>" +
+                    "<td>" + "<a class='btn btn-succes' data->data-toggle='modal' data-target='#Ingresociudad' onclick='CargaCidad(" + item.CiudadId + ")'>Editar</a>" +
                     "</td></tr>";
             }
             object[] dato = { html };

@@ -10,7 +10,9 @@ class ClaseCiudad {
 
     guardaciudad(id) {
         var Nombre = this.Nombre;
+        var Ciudad = this.CiudadId;
         var accion = this.accion;
+        
         if (id == '0') {
             $.ajax({
                 type: "POST",
@@ -44,6 +46,18 @@ class ClaseCiudad {
             })
         }
     }
+    CargaCiudad(CiudadId) {
+        var accion = this.accion;
+        $.ajax({
+            type: "POST",
+            url: accion,
+            data: { CiudadId },
+            success: (respuesta) => {
+                console.getElementById('Nombre').value = respuesta[0].Nombre;
+            }
+
+        });
+    }
     listaindex() {
         var accion = this.accion;
         $.ajax({
@@ -51,7 +65,7 @@ class ClaseCiudad {
             url: accion ,
             data: {},
             success: (respuesta) => {
-                $.each(respuesta, (index, va) => {
+                $.each(respuesta, (index, val) => {
                     $('#ListaCiudad').html(val[0]);
                 });
             }
@@ -61,7 +75,7 @@ class ClaseCiudad {
 
     limpiarcajas(){
             document.getElementById('Nombre').value = '';
-            document.getElementById('CiudadId').value='';
+             document.getElementById('CiudadId').value='';
             $('#Ingresociudad').modal('hide');
             listaindex();
     }
