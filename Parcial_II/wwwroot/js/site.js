@@ -64,7 +64,7 @@ var guardaCiudad = () => {
         CiudadId = '0';
         var accion = 'Ciudads/ControladorGuardaCiudad';
     } else {
-        var accion=
+        var accion = '';
     }
     var graba = new ClaseCiudad(Nombre, accion);
     graba.guardaciudad(CiudadId);
@@ -72,7 +72,7 @@ var guardaCiudad = () => {
 
 var Cargapropie = (PropietarioId) => {
     var accion = 'Propietarios/ControladorUnpropi';
-    var clspropieta = new ClasePropietario('','','','','','','','',accion)
+    var clspropieta = new ClasePropietario('','','','','','','',accion)
     clspropieta.Cargarpropi(PropietarioId);
 }
 
@@ -198,19 +198,18 @@ var grabaEmpleado= () => {
     var PrimerApellido = document.getElementById('Apellido1').value;
     var SegundoApellido = document.getElementById('Apellido2').value;
     var Direccion = document.getElementById('Direccion').value; 
-    var Salario = document.getElementById('Direccion').value;
-    var Fecha_nacimiento = document.getElementById('Correo').value;
-    var Edad = document.getElementById('Telefono').value; 
-    var UsuarioId = document.getElementById('Telefono').value;  
+    var Salario = document.getElementById('Salario').value;
+    var Fecha_nacimiento = document.getElementById('Fecha_nacimiento').value;
+    var Edad = document.getElementById('Edad').value; 
+    var UsuarioId = document.getElementById('UsuarioId').value;  
     var CategoriaLaboralId = document.getElementById('Telefono').value; 
-    var EmpleadoId = document.getElementById('EmpleadoId').value;
+    var EmpleadoId = document.getElementById('CategoriaLaboralId').value;
     if (EmpleadoId === '') {
         EmpleadoId = '0';
-        var accion = 'Propietarios/ControladorGuardaPropietario'; 
-        var accion = 'Empleado/ControladorGuardaEmpleado';
+         var accion = 'Empleado/ControladorGuardaEmpleado';
     } else {
 
-        var accion = 'Propietarios/ControladorEditapropi';
+        var accion = '';
     }
     var graba = new ClasePropietario(Nombre1, Nombre2, Apellido1, Apellido2, Direccion, Correo, Telefono, accion);
     graba.guardarpropietario(PropietarioId);
