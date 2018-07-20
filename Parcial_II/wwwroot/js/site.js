@@ -82,6 +82,21 @@ var CargaCliente = (ClienteId) => {
     var clsclien = new Claseclientejs('', '', '', '', '', '', '','','','','', accion);
     clsclien.CargarCliente(ClienteId);
 }
+var grabaTipo_inmu = () => {
+    var nombre = document.getElementById('nombre').value;
+    var inmuId = document.getElementById('tipoinmuId').value;
+
+
+    if (inmuId == '') {
+        inmuId == 0;
+        var accion = 'Tipos_inmus/ControladorGuardaTipoinmu';
+    }
+    else {
+        var accion = 'Tipos_inmus/ControladorEditaTipoinmu';
+    }
+    var graba = new ClaseTipoinmu(nombre, accion);
+    graba.GuardarTipoinmu(inmuId);
+}
 var ListaTipo_inmu = () => {
     var accion = 'Tipos_inmus/ControladorListaTipo_inmu';
     var tipoinmu = new ClaseTipoinmu('', accion);
