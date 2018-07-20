@@ -129,6 +129,11 @@ var ListaInmueble = () => {
     var inmu = new ClaseInmuble('', accion);
     inmu.ListadeInmueble();
 }
+var ListaCliente = () => {
+    var accion = 'Clientes/ControladorListaCliente';
+    var cliente = new Claseclientejs('', '', '', '', '', '', '', '', '', '', accion);
+    cliente.ListaCliente();
+}
 
 var CargaInmueble = (inmuebleId) => {
     var accion = 'Inmuebles/ControladorUnInmuble';
