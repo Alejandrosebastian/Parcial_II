@@ -30,7 +30,7 @@ var guardaCliente = () => {
         ClienteId == '0';
         var accion = 'Clientes/ControladorGuardarCliente';
     } else {
-        var accion = 'Clientes/ControladorGuardarCliente';
+        var accion = 'Clientes/ControladorEditarCliente';
     }
     var graba = new Claseclientejs(cedula, primernombre, segundonombre, primerapellido, segundoapellido, telefono, correo, tipo_profe, importe_maximo, fecha_reg, accion)
     graba.claseGuardarCliente(ClienteId);
@@ -59,7 +59,7 @@ var grabaPropietario = () => {
 
 var Cargapropie = (PropietarioId) => {
     var accion = 'Propietarios/ControladorUnpropi';
-    var clspropieta = new ClasePropietario('', '', '', '', '', '', '', accion);
+    var clspropieta = new ClasePropietario('','','','','','','','',accion)
     clspropieta.Cargarpropi(PropietarioId);
 }
 
