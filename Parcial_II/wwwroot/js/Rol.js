@@ -25,7 +25,7 @@
             $.ajax({
                 type: "POST",
                 url: accion,
-                data{
+                data:{
                     Nombre,
                     id
                 },
