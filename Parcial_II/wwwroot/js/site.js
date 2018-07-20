@@ -127,7 +127,7 @@ var ListaInmueble = () => {
 }
 var ListaCliente = () => {
     var accion = 'Clientes/ControladorListaCliente';
-    var cliente = new Claseclientejs('', '', '', '', '', '', '', '', '', '', accion);
+    var cliente = new Claseclientejs('', '', '', '', '', '', '', '', '', '','', accion);
     cliente.ListaCliente();
 }
 
