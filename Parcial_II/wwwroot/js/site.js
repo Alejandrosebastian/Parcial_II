@@ -215,4 +215,17 @@ var grabaEmpleado= () => {
     var graba = new ClasePropietario(Nombre1, Nombre2, Apellido1, Apellido2, Direccion, Correo, Telefono, accion);
     graba.guardarpropietario(PropietarioId);
 
+
+    var guardaRol = () => {
+        var Nombre = document.getElementById('Nombre').value;
+        var RolId = document.getElementById('RolId').value;
+        if (RolId == '') {
+            RolId = '0';
+            var accion = 'Rols/ControladorGuardaRol';
+        } else {
+            var accion =
+    }
+        var graba = new ClaseRol(Nombre, accion);
+        graba.guardarol(CiudadId);
+    }
 }

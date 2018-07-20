@@ -13,10 +13,14 @@ namespace Parcial_II.Controllers
     public class RolsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private RolModel claserol;
+
 
         public RolsController(ApplicationDbContext context)
         {
             _context = context;
+            claserol = new RolModel(context);
+
         }
 
         // GET: Rols
