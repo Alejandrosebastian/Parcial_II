@@ -57,6 +57,7 @@ var grabaPropietario = () => {
     graba.guardarpropietario(PropietarioId);
 
 }
+
 var guardaCiudad = () => {
     var Nombre = document.getElementById('Nombre').value;
     var CiudadId = document.getElementById('CiudadId').value;
