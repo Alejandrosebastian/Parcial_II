@@ -35,6 +35,7 @@
                         correo},
                     success: (respuesta) => {
                         if (respuesta[0].code == 'save') {
+                            $('#IngresoPropietario').modal('hide');
                             this.limpiarcajaspro();
                         }
                     }
@@ -90,14 +91,14 @@
             data: {PropietarioId},
             success: (respuesta) => {
                 console.log(respuesta);
-                document.getElementById('Nombre1').value = respuesta[0].Nombre1;
-                document.getElementById('Nombre2').value = respuesta[0].Nombre2;
+                document.getElementById('PropietarioId').value = respuesta[0].PropietarioId;
                 document.getElementById('Apellido1').value = respuesta[0].Apellido1;
                 document.getElementById('Apellido2').value = respuesta[0].Apellido2;
-                document.getElementById('Direccion').value = respuesta[0].Direccion;
                 document.getElementById('Correo').value = respuesta[0].Correo;
+                document.getElementById('Direccion').value = respuesta[0].Direccion;
+                document.getElementById('Nombre1').value = respuesta[0].Nombre1;
+                document.getElementById('Nombre2').value = respuesta[0].Nombre2;
                 document.getElementById('Telefono').value = respuesta[0].Telefono;
-                document.getElementById('PropietarioId').value = respuesta[0].PropietarioId;
             }
         });
     }
