@@ -32,7 +32,7 @@
                         apellido2,
                         direccion,
                         telefono,
-                        correo,},
+                        correo},
                     success: (respuesta) => {
                         if (respuesta[0].code == 'save') {
                             this.limpiarcajaspro();
@@ -81,13 +81,14 @@
         });
     }
 
-    Cargapropi(PropietarioId) {
+    Cargarpropi(PropietarioId) {
         var accion = this.accion;
 
-        $.post(
-            accion,
-            { PropietarioId },
-            (respuesta) => {
+        $.ajax({
+            type: "POST",
+            url: accion,
+            data: {PropietarioId},
+            success: (respuesta) => {
                 console.log(respuesta);
                 document.getElementById('Nombre1').value = respuesta[0].Nombre1;
                 document.getElementById('Nombre2').value = respuesta[0].Nombre2;
@@ -98,9 +99,7 @@
                 document.getElementById('Telefono').value = respuesta[0].Telefono;
                 document.getElementById('PropietarioId').value = respuesta[0].PropietarioId;
             }
-        );
-
-
+        });
     }
 
     limpiarcajaspro() {

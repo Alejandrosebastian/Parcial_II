@@ -5,149 +5,61 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Parcial_ll.Models;
 using Parcial_II.Data;
 using Parcial_II.Models;
 
-namespace Parcial_II.Controllers
+namespace Parcial_ll.Controllers
 {
-    public class Tipos_inmuController : Controller
+    public class Tipos_inmusController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private Tipos_inmuModels claseinmu;
 
-        public Tipos_inmuController(ApplicationDbContext context)
+        public Tipos_inmusController(ApplicationDbContext context)
         {
             _context = context;
+            claseinmu = new Tipos_inmuModels(context);
         }
 
-        // GET: Tipos_inmu
+        // GET: Tipos_inmus
         public async Task<IActionResult> Index()
         {
             return View(await _context.Tipos_inmu.ToListAsync());
         }
 
-        // GET: Tipos_inmu/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGuardaTipoinmu(string nombre)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tipos_inmu = await _context.Tipos_inmu
-                .SingleOrDefaultAsync(m => m.Tipos_inmuId == id);
-            if (tipos_inmu == null)
-            {
-                return NotFound();
-            }
-
-            return View(tipos_inmu);
+            return claseinmu.ModeloGrabaTipos_inmu(nombre);
         }
 
-        // GET: Tipos_inmu/Create
-        public IActionResult Create()
+        public List<object[]> ControladorListaTipoinmu()
         {
-            return View();
+            return claseinmu.ModeloListaTipoinmu();
+        }
+        public List<Tipos_inmu> ControladorUnTipoinmu(int tipoinmuId)
+        {
+            //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
+            var sexo = (from t in _context.Tipos_inmu
+                        where t.Tipos_inmuId == tipoinmuId
+                        select t).ToList();
+            return sexo;
         }
 
-        // POST: Tipos_inmu/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Tipos_inmuId,nombre")] Tipos_inmu tipos_inmu)
+        public List<IdentityError> ControladorEditaTipoinmu(int id, string nombre)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tipos_inmu);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tipos_inmu);
+            return claseinmu.ModeloEditarTipoinmu(id, nombre);
         }
-
-        // GET: Tipos_inmu/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        //public List<IdentityError> ControladorEliminarSexo(int id)
+        //{
+        //    return claseinmu.Model(id);
+        //}
+        public List<object[]> ContronladorImprimirTipoinmu()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tipos_inmu = await _context.Tipos_inmu.SingleOrDefaultAsync(m => m.Tipos_inmuId == id);
-            if (tipos_inmu == null)
-            {
-                return NotFound();
-            }
-            return View(tipos_inmu);
-        }
-
-        // POST: Tipos_inmu/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Tipos_inmuId,nombre")] Tipos_inmu tipos_inmu)
-        {
-            if (id != tipos_inmu.Tipos_inmuId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(tipos_inmu);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!Tipos_inmuExists(tipos_inmu.Tipos_inmuId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tipos_inmu);
-        }
-
-        // GET: Tipos_inmu/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tipos_inmu = await _context.Tipos_inmu
-                .SingleOrDefaultAsync(m => m.Tipos_inmuId == id);
-            if (tipos_inmu == null)
-            {
-                return NotFound();
-            }
-
-            return View(tipos_inmu);
-        }
-
-        // POST: Tipos_inmu/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var tipos_inmu = await _context.Tipos_inmu.SingleOrDefaultAsync(m => m.Tipos_inmuId == id);
-            _context.Tipos_inmu.Remove(tipos_inmu);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool Tipos_inmuExists(int id)
-        {
-            return _context.Tipos_inmu.Any(e => e.Tipos_inmuId == id);
+            return claseinmu.ModeloImpresionTipo_inmu();
         }
     }
 }

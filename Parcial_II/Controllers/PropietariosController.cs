@@ -38,9 +38,10 @@ namespace Parcial_II.Controllers
         {
             return clasepropietario.ClaseGuardarPropietario(Nombre1, Nombre2, Apellido1, Apellido2, Direccion, Correo, Telefono);
         }
-        public List<Propietario> ControladorUnpropi(int PropietarioId)
+
+        public List<Propietario> ControladorUnpropi(int PropiId)
         {
-            var propie = (from p in _context.Propietario where p.PropietarioId == PropietarioId select p).ToList();
+            var propie = (from p in _context.Propietario where p.PropietarioId == PropiId select p).ToList();
             return propie;
         }
         public List<IdentityError> ControladorEditapropi(string Nombre1, string Nombre2, string Apellido1, string Apellido2, string Direccion, string Correo, int Telefono, int PropietarioId)

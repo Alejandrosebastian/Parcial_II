@@ -13,10 +13,12 @@ namespace Parcial_II.Controllers
     public class EmpleadoesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private EmpleadoModel claseEmpleado;
 
         public EmpleadoesController(ApplicationDbContext context)
         {
             _context = context;
+            claseEmpleado = new EmpleadoModel(context);
         }
 
         // GET: Empleadoes

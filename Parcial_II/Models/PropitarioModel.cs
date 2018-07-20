@@ -83,7 +83,7 @@ namespace Parcial_II.Models
                     "<td>" + item.Direccion + "</td>" +
                     "<td>" + item.Correo + "</td>" +
                     "<td>" + item.Telefono + "</td>" +
-                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoPropietario' onclick='Cargapropie(" + item.PropietarioId + ")'>Editar</a>" +
+                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoPropietario' onclick='Cargapropie (" + item.PropietarioId + ")'>Editar</a>" +
                     //  "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionTipoinmu' onclick='CargaParaImpresionTipoinmu();'>Imprimir</a>" +
 
                     "</td></tr>";
