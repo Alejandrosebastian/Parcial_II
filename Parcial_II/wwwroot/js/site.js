@@ -5,7 +5,7 @@ $().ready(() => {
 
     ListaTipo_inmu();
 
-    ListaInmueble();
+    //ListaInmueble();
 
 });
 
@@ -44,16 +44,17 @@ var grabaPropietario = () => {
 var Cargapropie = (PropietarioId) => {
     var accion = 'Propietarios/ControladorUnpropi';
     var clspropieta = new ClasePropietario('', '', '', '', '', '', '', accion);
-    clspropieta.Cargapropi(PropietarioId);
+    clspropieta.Cargarpropi(PropietarioId);
 }
 
 var ListaTipo_inmu = () => {
-    var accion = 'Tipos_inmus/ControladorListaTipoinmu';
+    var accion = 'Tipos_inmu/ControladorListaTipoinmu';
     var tipoinmu = new ClaseTipoinmu('', accion);
     tipoinmu.ListadeTipoinmu();
 }
+
 var CargaTipoinmu = (tipoinmuId) => {
-    var accion = 'Tipos_inmus/ControladorUnTipoinmu';
+    var accion = 'Tipos_inmu/ControladorUnTipoinmu';
     var untipoinmu = new ClaseTipoinmu('', accion);
     untipoinmu.CargarTipoinmu(tipoinmuId);
 }
@@ -67,7 +68,7 @@ var CargaTipoinmu = (tipoinmuId) => {
 //    } else { alert('usted canselo la elimnacion del registro'); }
 //}
 var CargaParaImpresionTipoinmu = () => {
-    var accion = 'Tipos_inmus/ContronladorImprimirTipoinmu';
+    var accion = 'Tipos_inmu/ContronladorImprimirTipoinmu';
     var carga = new ClaseTipoinmu('', accion);
     carga.ImprimirTipoinmu();
 
@@ -108,6 +109,7 @@ var ListaInmueble = () => {
     var inmu = new ClaseInmuble('', accion);
     inmu.ListadeInmueble();
 }
+
 var CargaInmueble = (inmuebleId) => {
     var accion = 'Inmuebles/ControladorUnInmuble';
     var untipoinmu = new ClaseInmueble('', accion);
@@ -135,16 +137,6 @@ var ImpresionInmueble = () => {
     window.print();
 }
 
-var ListaInmueble = () => {
-    var accion = 'Inmuebles/ControladorListaInmueble';
-    var inmu = new ClaseInmueble('', accion);
-    inmu.ListadeInmueble();
-}
-var CargaInmueble = (inmuebleId) => {
-    var accion = 'Inmuebles/ControladorUnInmuble';
-    var untipoinmu = new ClaseInmueble('', accion);
-    untipoinmu.CargarInmueble(inmuebleId);
-}
 //var eliminaSexo = (id) => {
 //    var accion = 'Sexos/ControladorEliminarSexo';
 //    var eliminasexo = new ClaseSexo('', accion);
@@ -158,3 +150,4 @@ var CargaParaImpresionInmueble = () => {
     var accion = 'Inmuebles/ContronladorImprimirInmueble';
     var carga = new ClaseInmueble('', accion);
     carga.ImprimirInmuebe();
+}
