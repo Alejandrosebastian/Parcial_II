@@ -1,35 +1,99 @@
-﻿@model IEnumerable<Parcial_II.Models.Tipos_inmu>
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{ViewData["Title"] = "Tipos de inmuebles";
 }
 
-<h2>Index</h2>
+<h2>Lista de Tipos de inmuebles</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoTipoinmu">Ingreso Tipo inmuebles</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.nombre)
-                </th>
+            <th>
+                Detalles
+            </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Tipos_inmuId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Tipos_inmuId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Tipos_inmuId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+    <tbody id="ListaTipoinmu"></tbody>
 </table>
+
+
+
+
+
+
+
+<div class="modal fade" id="IngresoTipoinmu" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" cl@{
+                        ass="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Tipos de inmuebles
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Nombre del tipo de inmueble</label>
+                        <input id="nombre" name="nombre" class="form-control" placeholder="ingrese el nombre del tipo de inmueble" />
+                    </div>
+                    <input id="tipoinmuId" name="tipoinmuId" hidden />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="grabaTipo_inmu()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ImpresionTipoinmu" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document" id="areaImprimir">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Reportes de Tipo de inmueble
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr class="danger">
+                                <td>Id Tipo de inmubles</td>
+                                <td>Nombre</td>
+                            </tr>
+                        </thead>
+                        <tbody id="CuerpoImpresionTipoinmu"> </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="ImpresionTipoinmu()">
+                    Imprimir
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
