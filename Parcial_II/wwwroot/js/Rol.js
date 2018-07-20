@@ -53,7 +53,7 @@
             data: {},
             success: (respuesta) => {
                 $.each(respuesta, (index, val) => {
-                    $("#Listarol").html(val[0]);
+                    $("#ListaRol").html(val[0]);
                 });
             }
         });
