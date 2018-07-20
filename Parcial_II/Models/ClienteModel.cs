@@ -17,7 +17,7 @@ namespace Parcial_II.Models
         public List<IdentityError> ClaseGuardarCliente(
             int Cedula, string Primernombre, string Segundonombre,
             string Primerapellido, string Segundoapellido, int Telefono,
-            string Correo, string Tipo_prefe_inmueble, int Importe_maximo, DateTime Fecha_registro
+            string Correo, string Tipo_prefe_inmueble, int Importe_maximo, DateTime Fecha_registro,int ClienteId
             )
         {
             List<IdentityError> ListaResultado = new List<IdentityError>();
@@ -33,7 +33,8 @@ namespace Parcial_II.Models
                 Correo = Correo,
                 Tipo_prefe_inmueble = Tipo_prefe_inmueble,
                 Importe_maximo = Importe_maximo,
-                Fecha_registro = Fecha_registro
+                Fecha_registro = Fecha_registro,
+                ClienteId = ClienteId
             };
             try
             {
@@ -57,6 +58,7 @@ namespace Parcial_II.Models
             ListaResultado.Add(error);
             return ListaResultado;
         }
+
         public List<object[]> ModeloListaCliente()
         {
 
@@ -91,6 +93,7 @@ namespace Parcial_II.Models
                            "<td>" + item.Tipo_prefe_inmueble + "</td>" +
                             "<td>" + item.Importe_maximo + "</td>" +
                              "<td>" + item.Fecha_registro + "</td>" +
+                             "<td>" + item.ClienteId + "</td>" +
                     "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoClienteS' onclick='CargaCliente(" + item.ClienteId + ")'>Editar</a>" +
                     "</td></tr>";
             }
@@ -100,5 +103,6 @@ namespace Parcial_II.Models
 
 
         }
+
     }
 }

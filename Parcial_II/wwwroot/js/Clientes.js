@@ -1,6 +1,6 @@
 ﻿class Claseclientejs {
     constructor(Cedula, Primernombre, Segundonombre, Primerapellido, Segundoapellido,
-        Telefono, Correo, Tipo_prefe_inmueble, Importe_maximo, Fecha_registro, accion) {
+        Telefono, Correo, Tipo_prefe_inmueble, Importe_maximo, Fecha_registro, ClienteId, accion) {
         this.Cedula = Cedula;
         this.Primernombre = Primernombre;
         this.Segundonombre = Segundonombre;
@@ -11,6 +11,7 @@
         this.Tipo_prefe_inmueble = Tipo_prefe_inmueble;
         this.Importe_maximo = Importe_maximo;
         this.Fecha_registro = Fecha_registro;
+        this.ClienteId = ClienteId;
         this.accion = accion;
     }
     claseGuardarCliente(id) {
@@ -24,6 +25,7 @@
         var tipo_prefe_inmueble = this.Tipo_prefe_inmueble;
         var importe_maximo = this.Importe_maximo;
         var fecha_registro = this.Fecha_registro;
+        var ClienteId = this.ClienteId;
         var accion = this.accion;
         if (id == '0') {
             $.ajax({
@@ -39,8 +41,8 @@
                     correo,
                     tipo_prefe_inmueble,
                     importe_maximo,
-                    fecha_registro
-
+                    fecha_registro,
+                    ClienteId
                 },
                 success: (respuesta) => {
 
@@ -68,6 +70,7 @@
                         tipo_prefe_inmueble,
                         importe_maximo,
                         fecha_registro,
+                        ClienteId,
                         id
                     },
                     success: (respuesta) => {
@@ -79,6 +82,7 @@
         }
 
     }
+
     listaindex() {
         var accion = this.accion;
         $.ajax({
@@ -92,6 +96,7 @@
             }
         });
     }
+
     limpiarcajaspro() {
         document.getElementById('Cedula').value;
         document.getElementById('Primernombre').value;
@@ -103,6 +108,7 @@
         document.getElementById('Tipo_prefe_inmueble').value;
         document.getElementById('Importe_maximo').value;
         document.getElementById('Fecha_registro').value;
+        document.getElementById('ClienteId').value;
         $('#IngresoClientes').modal('hide');
         listaindex();
     }
