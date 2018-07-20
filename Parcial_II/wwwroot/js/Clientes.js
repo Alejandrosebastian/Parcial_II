@@ -108,6 +108,7 @@
         document.getElementById('Tipo_prefe_inmueble').value;
         document.getElementById('Importe_maximo').value;
         document.getElementById('Fecha_registro').value;
+        document.getElementById('ClienteId').value;
         $('#IngresoClientes').modal('hide');
         listaindex();
     }
