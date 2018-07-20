@@ -55,7 +55,6 @@
                 console.log(respuesta);
                 document.getElementById('nombre').value = respuesta[0].nombre;
                 document.getElementById('tipoinmuId').value = respuesta[0].Tipos_inmuId;
-                //localStorage.setItem("sexoId", JSON.respuesta[0].sexoId);
 
             }
         );

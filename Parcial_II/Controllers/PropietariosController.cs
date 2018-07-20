@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +15,12 @@ namespace Parcial_II.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        private PropitarioModel clasepropietario;
+
         public PropietariosController(ApplicationDbContext context)
         {
             _context = context;
+            clasepropietario = new PropitarioModel(context);
         }
 
         // GET: Propietarios
@@ -25,129 +29,24 @@ namespace Parcial_II.Controllers
             return View(await _context.Propietario.ToListAsync());
         }
 
-        // GET: Propietarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<object[]> Controladorlistaindexpro()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var propietario = await _context.Propietario
-                .SingleOrDefaultAsync(m => m.PropietarioId == id);
-            if (propietario == null)
-            {
-                return NotFound();
-            }
-
-            return View(propietario);
+            return clasepropietario.ModeloListapropietario();
         }
 
-        // GET: Propietarios/Create
-        public IActionResult Create()
+        public List<IdentityError> ControladorGuardaPropietario(string Nombre1, string Nombre2, string Apellido1, string Apellido2, string Direccion, string Correo, int Telefono)
         {
-            return View();
+            return clasepropietario.ClaseGuardarPropietario(Nombre1, Nombre2, Apellido1, Apellido2, Direccion, Correo, Telefono);
         }
 
-        // POST: Propietarios/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PropietarioId,Nombre1,Nombre2,Apellido1,Apellido2,Direccion,Correo,Telefono")] Propietario propietario)
+        public List<Propietario> ControladorUnpropi(int PropiId)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(propietario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(propietario);
+            var propie = (from p in _context.Propietario where p.PropietarioId == PropiId select p).ToList();
+            return propie;
         }
-
-        // GET: Propietarios/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> ControladorEditapropi(string Nombre1, string Nombre2, string Apellido1, string Apellido2, string Direccion, string Correo, int Telefono, int PropietarioId)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var propietario = await _context.Propietario.SingleOrDefaultAsync(m => m.PropietarioId == id);
-            if (propietario == null)
-            {
-                return NotFound();
-            }
-            return View(propietario);
-        }
-
-        // POST: Propietarios/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PropietarioId,Nombre1,Nombre2,Apellido1,Apellido2,Direccion,Correo,Telefono")] Propietario propietario)
-        {
-            if (id != propietario.PropietarioId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(propietario);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PropietarioExists(propietario.PropietarioId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(propietario);
-        }
-
-        // GET: Propietarios/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var propietario = await _context.Propietario
-                .SingleOrDefaultAsync(m => m.PropietarioId == id);
-            if (propietario == null)
-            {
-                return NotFound();
-            }
-
-            return View(propietario);
-        }
-
-        // POST: Propietarios/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var propietario = await _context.Propietario.SingleOrDefaultAsync(m => m.PropietarioId == id);
-            _context.Propietario.Remove(propietario);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool PropietarioExists(int id)
-        {
-            return _context.Propietario.Any(e => e.PropietarioId == id);
+            return clasepropietario.Modaleditarpro(Nombre1, Nombre2, Apellido1, Apellido2, Direccion, Correo, Telefono, PropietarioId);
         }
     }
 }
