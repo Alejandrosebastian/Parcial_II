@@ -25,7 +25,7 @@ namespace Parcial_II.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Cliente.ToListAsync());
         }
 
         public List<object[]> Controladorlistaindexcliente()

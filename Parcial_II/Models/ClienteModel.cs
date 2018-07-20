@@ -81,7 +81,7 @@ namespace Parcial_II.Models
                                c.Importe_maximo,
                                c.Fecha_registro,
                                c.ClienteId
-                           }).OrderBy(c => c.Cedula).ToList();
+                           }).OrderBy(c => c.Primernombre).ToList();
             foreach (var item in cliente)
             {
                 html += "<tr class='info'>" +
