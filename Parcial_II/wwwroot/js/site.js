@@ -193,17 +193,18 @@ var CargaParaImpresionInmueble = () => {
 } 
 
 var grabaEmpleado= () => {
-    var PrimerNombre = document.getElementById('Nombre1').value;
-    var SegundoNombre = document.getElementById('Nombre2').value;
-    var PrimerApellido = document.getElementById('Apellido1').value;
-    var SegundoApellido = document.getElementById('Apellido2').value;
+    var PrimerNombre = document.getElementById('PrimerNombre').value;
+    var SegundoNombre = document.getElementById('SegundoNombre').value;
+    var PrimerApellido = document.getElementById('PrimerApellido').value;
+    var SegundoApellido = document.getElementById('SegundoApellido').value;
     var Direccion = document.getElementById('Direccion').value; 
     var Salario = document.getElementById('Salario').value;
+    var Correo = document.getElementById('Correo').value;
     var Fecha_nacimiento = document.getElementById('Fecha_nacimiento').value;
     var Edad = document.getElementById('Edad').value; 
     var UsuarioId = document.getElementById('UsuarioId').value;  
-    var CategoriaLaboralId = document.getElementById('Telefono').value; 
-    var EmpleadoId = document.getElementById('CategoriaLaboralId').value;
+    var CategoriaLaboralId = document.getElementById('CategoriaLaboralId').value; 
+    var EmpleadoId = document.getElementById('EmpleadoId').value;
     if (EmpleadoId === '') {
         EmpleadoId = '0';
          var accion = 'Empleado/ControladorGuardaEmpleado';
@@ -211,8 +212,8 @@ var grabaEmpleado= () => {
 
         var accion = '';
     }
-    var graba = new ClasePropietario(Nombre1, Nombre2, Apellido1, Apellido2, Direccion, Correo, Telefono, accion);
-    graba.guardarpropietario(PropietarioId);
+    var graba = new claseEmpleado(primernombre, segundonombre, primerapellido, segundoapellido, direccion, salario, correo, fecha_nacimiento, edad, UsuarioId, CategoriaLaboralId);
+    graba.GuardarEmpleado(EmpleadoId);
 
 
     var guardaRol = () => {
