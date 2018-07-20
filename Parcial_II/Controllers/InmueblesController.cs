@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace Parcial_II.Controllers
     public class InmueblesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private InmueblesModel claseinmuebles;
 
         public InmueblesController(ApplicationDbContext context)
         {
@@ -26,147 +28,35 @@ namespace Parcial_II.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Inmuebles/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGuardaInmueble(String Direccion, String Nhabitcion, int cos, int Tipo, int Propio, int Parro, Boolean Activo)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var inmuebles = await _context.Inmuebles
-                .Include(i => i.Parroquia)
-                .Include(i => i.Propietario)
-                .Include(i => i.Tipos_inmu)
-                .SingleOrDefaultAsync(m => m.InmueblesId == id);
-            if (inmuebles == null)
-            {
-                return NotFound();
-            }
-
-            return View(inmuebles);
+            return claseinmuebles.ModeloGrabaInmueble(Direccion, Nhabitcion, cos, Tipo, Propio, Parro, Activo);
         }
 
-        // GET: Inmuebles/Create
-        public IActionResult Create()
+        public List<object[]> ControladorListaInmueble()
         {
-            ViewData["ParroquiaId"] = new SelectList(_context.Set<Parroquia>(), "ParroquiaId", "Nombre");
-            ViewData["PropietarioId"] = new SelectList(_context.Set<Propietario>(), "PropietarioId", "Apellido1");
-            ViewData["Tipos_inmuid"] = new SelectList(_context.Set<Tipos_inmu>(), "Tipos_inmuId", "nombre");
-            return View();
+            return claseinmuebles.ModeloListaInmueble();
+        }
+        public List<Tipos_inmu> ControladorUnInmueble(int inmuebleId)
+        {
+            //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
+            var sexo = (from t in _context.Tipos_inmu
+                        where t.Tipos_inmuId == inmuebleId
+                        select t).ToList();
+            return sexo;
         }
 
-        // POST: Inmuebles/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InmueblesId,direccion,N_habitaciones,Costo,activo,PropietarioId,ParroquiaId,Tipos_inmuid")] Inmuebles inmuebles)
+        public List<IdentityError> ControladorEditaInmueble(string direccion, string nhabitacion, int inmuebleid, int parra, int pro, int tipoinmuId, int costo, Boolean Activo)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(inmuebles);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ParroquiaId"] = new SelectList(_context.Set<Parroquia>(), "ParroquiaId", "Nombre", inmuebles.ParroquiaId);
-            ViewData["PropietarioId"] = new SelectList(_context.Set<Propietario>(), "PropietarioId", "Apellido1", inmuebles.PropietarioId);
-            ViewData["Tipos_inmuid"] = new SelectList(_context.Set<Tipos_inmu>(), "Tipos_inmuId", "nombre", inmuebles.Tipos_inmuid);
-            return View(inmuebles);
+            return claseinmuebles.ModeloEditarInmueble(direccion, nhabitacion, inmuebleid, parra, pro, tipoinmuId, costo, Activo);
         }
-
-        // GET: Inmuebles/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        //public List<IdentityError> ControladorEliminarSexo(int id)
+        //{
+        //    return claseinmu.Model(id);
+        //}
+        public List<object[]> ContronladorImprimirInmuble()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var inmuebles = await _context.Inmuebles.SingleOrDefaultAsync(m => m.InmueblesId == id);
-            if (inmuebles == null)
-            {
-                return NotFound();
-            }
-            ViewData["ParroquiaId"] = new SelectList(_context.Set<Parroquia>(), "ParroquiaId", "Nombre", inmuebles.ParroquiaId);
-            ViewData["PropietarioId"] = new SelectList(_context.Set<Propietario>(), "PropietarioId", "Apellido1", inmuebles.PropietarioId);
-            ViewData["Tipos_inmuid"] = new SelectList(_context.Set<Tipos_inmu>(), "Tipos_inmuId", "nombre", inmuebles.Tipos_inmuid);
-            return View(inmuebles);
-        }
-
-        // POST: Inmuebles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InmueblesId,direccion,N_habitaciones,Costo,activo,PropietarioId,ParroquiaId,Tipos_inmuid")] Inmuebles inmuebles)
-        {
-            if (id != inmuebles.InmueblesId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(inmuebles);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!InmueblesExists(inmuebles.InmueblesId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ParroquiaId"] = new SelectList(_context.Set<Parroquia>(), "ParroquiaId", "Nombre", inmuebles.ParroquiaId);
-            ViewData["PropietarioId"] = new SelectList(_context.Set<Propietario>(), "PropietarioId", "Apellido1", inmuebles.PropietarioId);
-            ViewData["Tipos_inmuid"] = new SelectList(_context.Set<Tipos_inmu>(), "Tipos_inmuId", "nombre", inmuebles.Tipos_inmuid);
-            return View(inmuebles);
-        }
-
-        // GET: Inmuebles/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var inmuebles = await _context.Inmuebles
-                .Include(i => i.Parroquia)
-                .Include(i => i.Propietario)
-                .Include(i => i.Tipos_inmu)
-                .SingleOrDefaultAsync(m => m.InmueblesId == id);
-            if (inmuebles == null)
-            {
-                return NotFound();
-            }
-
-            return View(inmuebles);
-        }
-
-        // POST: Inmuebles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var inmuebles = await _context.Inmuebles.SingleOrDefaultAsync(m => m.InmueblesId == id);
-            _context.Inmuebles.Remove(inmuebles);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool InmueblesExists(int id)
-        {
-            return _context.Inmuebles.Any(e => e.InmueblesId == id);
+            return claseinmuebles.ModeloImpresionInmueble();
         }
     }
 }
