@@ -89,6 +89,7 @@
             url: accion,
             data: {PropietarioId},
             success: (respuesta) => {
+                console.log(respuesta);
                 document.getElementById('Nombre1').value = respuesta[0].Nombre1;
                 document.getElementById('Nombre2').value = respuesta[0].Nombre2;
                 document.getElementById('Apellido1').value = respuesta[0].Apellido1;
@@ -99,8 +100,6 @@
                 document.getElementById('PropietarioId').value = respuesta[0].PropietarioId;
             }
         });
-
-
     }
 
     limpiarcajaspro() {
