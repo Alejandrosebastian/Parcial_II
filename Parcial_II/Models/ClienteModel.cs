@@ -10,6 +10,8 @@ namespace Parcial_II.Models
     public class ClienteModel
     {
         private ApplicationDbContext _contexto;
+
+
         public ClienteModel(ApplicationDbContext contexto)
         {
             _contexto = contexto;

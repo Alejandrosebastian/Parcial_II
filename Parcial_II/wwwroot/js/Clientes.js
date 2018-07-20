@@ -98,17 +98,17 @@
     }
 
     limpiarcajaspro() {
-        document.getElementById('Cedula').value;
-        document.getElementById('Primernombre').value;
-        document.getElementById('Segundonombre').value;
-        document.getElementById('Primerapellido').value;
-        document.getElementById('Segundoapellido').value;
-        document.getElementById('Telefono').value;
-        document.getElementById('Correo').value;
-        document.getElementById('Tipo_prefe_inmueble').value;
-        document.getElementById('Importe_maximo').value;
-        document.getElementById('Fecha_registro').value;
-        document.getElementById('ClienteId').value;
+        document.getElementById('Cedula').value ='';
+        document.getElementById('Primernombre').value = '';
+        document.getElementById('Segundonombre').value = '';
+        document.getElementById('Primerapellido').value = '';
+        document.getElementById('Segundoapellido').value = '';
+        document.getElementById('Telefono').value = '';
+        document.getElementById('Correo').value = '';
+        document.getElementById('Tipo_prefe_inmueble').value = '';
+        document.getElementById('Importe_maximo').value = '';
+        document.getElementById('Fecha_registro').value = '';
+        document.getElementById('ClienteId').value = '';
         $('#IngresoClientes').modal('hide');
         listaindex();
     }

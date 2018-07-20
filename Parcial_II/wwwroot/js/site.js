@@ -5,8 +5,8 @@ $().ready(() => {
 
     ListaTipo_inmu();
 
-    //ListaInmueble();
-
+    ListaInmueble();
+    ListaCliente();
 });
 
 var sitelistaindexpro = () => {
@@ -26,13 +26,14 @@ var guardaCliente = () => {
     var tipo_profe = document.getElementById('Tipo_prefe_inmueble').value;
     var importe_maximo = document.getElementById('Importe_maximo').value;
     var fecha_reg = document.getElementById('Fecha_registro').value;
+    var ClienteId = document.getElementById('ClienteId').value;
     if (ClienteId === '') {
         ClienteId == '0';
         var accion = 'Clientes/ControladorGuardarCliente';
     } else {
-        var accion = 'Clientes/ControladorGuardarCliente';
+        var accion = 'Clientes/ControladorEditarCliente';
     }
-    var graba = new Claseclientejs(cedula, primernombre, segundonombre, primerapellido, segundoapellido, telefono, correo, tipo_profe, importe_maximo, fecha_reg, accion)
+    var graba = new Claseclientejs(cedula, primernombre, segundonombre, primerapellido, segundoapellido, telefono, correo, tipo_profe, importe_maximo, fecha_reg, ClienteId, accion)
     graba.claseGuardarCliente(ClienteId);
 }
 
@@ -59,7 +60,7 @@ var grabaPropietario = () => {
 
 var Cargapropie = (PropietarioId) => {
     var accion = 'Propietarios/ControladorUnpropi';
-    var clspropieta = new ClasePropietario('', '', '', '', '', '', '', accion);
+    var clspropieta = new ClasePropietario('','','','','','','','',accion)
     clspropieta.Cargarpropi(PropietarioId);
 }
 
@@ -125,6 +126,7 @@ var ListaInmueble = () => {
     var inmu = new ClaseInmuble('', accion);
     inmu.ListadeInmueble();
 }
+
 var ListaCliente = () => {
     var accion = 'Clientes/ControladorListaCliente';
     var cliente = new Claseclientejs('', '', '', '', '', '', '', '', '', '','', accion);
