@@ -83,13 +83,13 @@ var CargaCliente = (ClienteId) => {
     clsclien.CargarCliente(ClienteId);
 }
 var ListaTipo_inmu = () => {
-    var accion = 'Tipos_inmu/ControladorListaTipo_inmu';
+    var accion = 'Tipos_inmus/ControladorListaTipo_inmu';
     var tipoinmu = new ClaseTipoinmu('', accion);
     tipoinmu.ListadeTipoinmu();
 }
 
 var CargaTipoinmu = (tipoinmuId) => {
-    var accion = 'Tipos_inmu/ControladorUnTipoinmu';
+    var accion = 'Tipos_inmus/ControladorUnTipoinmu';
     var untipoinmu = new ClaseTipoinmu('', accion);
     untipoinmu.CargarTipoinmu(tipoinmuId);
 }
@@ -103,7 +103,7 @@ var CargaTipoinmu = (tipoinmuId) => {
 //    } else { alert('usted canselo la elimnacion del registro'); }
 //}
 var CargaParaImpresionTipoinmu = () => {
-    var accion = 'Tipos_inmu/ContronladorImprimirTipoinmu';
+    var accion = 'Tipos_inmus/ContronladorImprimirTipoinmu';
     var carga = new ClaseTipoinmu('', accion);
     carga.ImprimirTipoinmu();
 
