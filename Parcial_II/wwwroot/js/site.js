@@ -37,7 +37,7 @@ var guardaCliente = () => {
     graba.claseGuardarCliente(ClienteId);
 }
 
-var grabaPropietario = () => {
+var guardarpropietario = () => {
     var Nombre1 = document.getElementById('Nombre1').value;
     var Nombre2 = document.getElementById('Nombre2').value;
     var Apellido1 = document.getElementById('Apellido1').value;
@@ -83,7 +83,7 @@ var CargaCliente = (ClienteId) => {
     clsclien.CargarCliente(ClienteId);
 }
 var ListaTipo_inmu = () => {
-    var accion = 'Tipos_inmu/ControladorListaTipoinmu';
+    var accion = 'Tipos_inmu/ControladorListaTipo_inmu';
     var tipoinmu = new ClaseTipoinmu('', accion);
     tipoinmu.ListadeTipoinmu();
 }
@@ -146,9 +146,9 @@ var ListaInmueble = () => {
 }
 
 var ListaCliente = () => {
-    var accion = 'Clientes/ControladorListaCliente';
+    var accion = 'Clientes/Controladorlistaindexcliente';
     var cliente = new Claseclientejs('', '', '', '', '', '', '', '', '', '','', accion);
-    cliente.ListaCliente();
+    cliente.listarcliente();
 }
 
 var CargaInmueble = (inmuebleId) => {
@@ -188,40 +188,41 @@ var ImpresionInmueble = () => {
 //    } else { alert('usted canselo la elimnacion del registro'); }
 //}
 
-var grabaEmpleado= () => {
+var grabaEmpleado = () => {
     var PrimerNombre = document.getElementById('PrimerNombre').value;
     var SegundoNombre = document.getElementById('SegundoNombre').value;
     var PrimerApellido = document.getElementById('PrimerApellido').value;
     var SegundoApellido = document.getElementById('SegundoApellido').value;
-    var Direccion = document.getElementById('Direccion').value; 
+    var Direccion = document.getElementById('Direccion').value;
     var Salario = document.getElementById('Salario').value;
     var Correo = document.getElementById('Correo').value;
     var Fecha_nacimiento = document.getElementById('Fecha_nacimiento').value;
-    var Edad = document.getElementById('Edad').value; 
-    var UsuarioId = document.getElementById('UsuarioId').value;  
-    var CategoriaLaboralId = document.getElementById('CategoriaLaboralId').value; 
+    var Edad = document.getElementById('Edad').value;
+    var UsuarioId = document.getElementById('UsuarioId').value;
+    var CategoriaLaboralId = document.getElementById('CategoriaLaboralId').value;
     var EmpleadoId = document.getElementById('EmpleadoId').value;
     if (EmpleadoId === '') {
         EmpleadoId = '0';
-         var accion = 'Empleado/ControladorGuardaEmpleado';
+        var accion = 'Empleado/ControladorGuardaEmpleado';
     } else {
 
         var accion = '';
     }
     var graba = new claseEmpleado(primernombre, segundonombre, primerapellido, segundoapellido, direccion, salario, correo, fecha_nacimiento, edad, UsuarioId, CategoriaLaboralId);
     graba.GuardarEmpleado(EmpleadoId);
-
+}
 
     var guardaRol = () => {
         var Nombre = document.getElementById('Nombre').value;
         var RolId = document.getElementById('RolId').value;
-        if (RolId == '') {
+        if (RolId == '')
+        {
             RolId = '0';
             var accion = 'Rols/ControladorGuardaRol';
-        } else {
-            var accion =
-    }
+        } else
+        {
+            var accion = '';
+        }
         var graba = new ClaseRol(Nombre, accion);
         graba.guardarol(CiudadId);
     }
-}

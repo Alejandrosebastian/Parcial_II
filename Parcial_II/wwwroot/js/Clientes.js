@@ -83,7 +83,7 @@
 
     }
 
-    listaindex() {
+    listarcliente() {
         var accion = this.accion;
         $.ajax({
             type: "POST",
