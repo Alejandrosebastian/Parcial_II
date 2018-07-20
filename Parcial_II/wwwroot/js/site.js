@@ -187,11 +187,6 @@ var ImpresionInmueble = () => {
 //        alert('registro eliminado');
 //    } else { alert('usted canselo la elimnacion del registro'); }
 //}
-var CargaParaImpresionInmueble = () => {
-    var accion = 'Inmuebles/ContronladorImprimirInmueble';
-    var carga = new ClaseInmueble('', accion);
-    carga.ImprimirInmuebe();
-} 
 
 var grabaEmpleado= () => {
     var PrimerNombre = document.getElementById('PrimerNombre').value;
