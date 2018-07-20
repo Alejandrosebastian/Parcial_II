@@ -97,6 +97,30 @@
         });
     }
 
+    CargarCliente(PropietarioId) {
+        var accion = this.accion;
+
+        $.ajax({
+            type: "POST",
+            url: accion,
+            data: { PropietarioId },
+            success: (respuesta) => {
+                console.log(respuesta);
+                document.getElementById('Cedula').value = respuesta[0].Cedula;
+                document.getElementById('Primernombre').value = respuesta[0].Primernombre;
+                document.getElementById('Segundonombre').value = respuesta[0].Segundonombre;
+                document.getElementById('Primerapellido').value = respuesta[0].Primerapellido;
+                document.getElementById('Segundoapellido').value = respuesta[0].Segundoapellido;
+                document.getElementById('Telefono').value = respuesta[0].Telefono;
+                document.getElementById('Correo').value = respuesta[0].Correo;
+                document.getElementById('Tipo_prefe_inmueble').value = respuesta[0].Tipo_prefe_inmueble;
+                document.getElementById('Importe_maximo').value = respuesta[0].Importe_maximo;
+                document.getElementById('Fecha_registro').value = respuesta[0].Fecha_registro;
+            
+            }
+        });
+    }
+
     limpiarcajaspro() {
         document.getElementById('Cedula').value ='';
         document.getElementById('Primernombre').value = '';

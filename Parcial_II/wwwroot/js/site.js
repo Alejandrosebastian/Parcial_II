@@ -5,7 +5,7 @@ $().ready(() => {
 
     ListaTipo_inmu();
 
-    ListaInmueble();
+   // ListaInmueble();
     ListaCliente();
 });
 
@@ -64,6 +64,11 @@ var Cargapropie = (PropietarioId) => {
     clspropieta.Cargarpropi(PropietarioId);
 }
 
+var CargaCliente = (ClienteId) => {
+    var accion = 'Propietarios/ControladorUnpropi';
+    var clsclien = new Claseclientejs('', '', '', '', '', '', '','','','','', accion);
+    clsclien.CargarCliente(ClienteId);
+}
 var ListaTipo_inmu = () => {
     var accion = 'Tipos_inmu/ControladorListaTipoinmu';
     var tipoinmu = new ClaseTipoinmu('', accion);
