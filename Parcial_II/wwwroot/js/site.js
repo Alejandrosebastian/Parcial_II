@@ -99,15 +99,33 @@ var CargaCliente = (ClienteId) => {
     var clsclien = new Claseclientejs('', '', '', '', '', '', '','','','','', accion);
     clsclien.CargarCliente(ClienteId);
 }
+<<<<<<< HEAD
 
+=======
+var grabaTipo_inmu = () => {
+    var nombre = document.getElementById('nombre').value;
+    var inmuId = document.getElementById('tipoinmuId').value;
+
+
+    if (inmuId == '') {
+        inmuId == 0;
+        var accion = 'Tipos_inmus/ControladorGuardaTipoinmu';
+    }
+    else {
+        var accion = 'Tipos_inmus/ControladorEditaTipoinmu';
+    }
+    var graba = new ClaseTipoinmu(nombre, accion);
+    graba.GuardarTipoinmu(inmuId);
+}
+>>>>>>> f8b6b83b2181ce9db136b26e83061318d48e3bc3
 var ListaTipo_inmu = () => {
-    var accion = 'Tipos_inmu/ControladorListaTipo_inmu';
+    var accion = 'Tipos_inmus/ControladorListaTipo_inmu';
     var tipoinmu = new ClaseTipoinmu('', accion);
     tipoinmu.ListadeTipoinmu();
 }
 
 var CargaTipoinmu = (tipoinmuId) => {
-    var accion = 'Tipos_inmu/ControladorUnTipoinmu';
+    var accion = 'Tipos_inmus/ControladorUnTipoinmu';
     var untipoinmu = new ClaseTipoinmu('', accion);
     untipoinmu.CargarTipoinmu(tipoinmuId);
 }
@@ -121,7 +139,7 @@ var CargaTipoinmu = (tipoinmuId) => {
 //    } else { alert('usted canselo la elimnacion del registro'); }
 //}
 var CargaParaImpresionTipoinmu = () => {
-    var accion = 'Tipos_inmu/ContronladorImprimirTipoinmu';
+    var accion = 'Tipos_inmus/ContronladorImprimirTipoinmu';
     var carga = new ClaseTipoinmu('', accion);
     carga.ImprimirTipoinmu();
 
@@ -230,17 +248,30 @@ var grabaEmpleado = () => {
     graba.GuardarEmpleado(EmpleadoId);
 }
 
-    var guardaRol = () => {
-        var Nombre = document.getElementById('Nombre').value;
-        var RolId = document.getElementById('RolId').value;
-        if (RolId == '')
-        {
-            RolId = '0';
-            var accion = 'Rols/ControladorGuardaRol';
-        } else
-        {
-            var accion = '';
-        }
-        var graba = new ClaseRol(Nombre, accion);
-        graba.guardarol(CiudadId);
+ 
+var sitelistaindexrol = () => {
+    var accion = 'Rols/Controladorlistaindexrol';
+    var clspropie = new ClaseRol('', accion);
+    clsrol.listaindex();
+}
+
+var guardarrol = () => {
+    var Nombre = document.getElementById('Nombre').value;
+    var RolId = document.getElementById('RolId').value;
+    if (RolId === '') {
+        RolId = '0';
+        var accion = 'Rols/ControladorGuardaRol';
+    } else {
+
+        var accion = 'Rols/ControladorEditarol';
     }
+    var graba = new ClaseRol(Nombre, accion);
+    graba.guardarrol(RolId);
+
+}
+
+var Cargarol = (RolId) => {
+    var accion = 'Rols/ControladorUnrol';
+    var clsrol = new ClaseRol('',  accion)
+    clsrol.Cargarrol(RolId);
+}
