@@ -81,14 +81,14 @@
         });
     }
 
-    Cargapropi(PropietarioId) {
+    Cargarpropi(PropietarioId) {
         var accion = this.accion;
 
-        $.post(
-            accion,
-            { PropietarioId },
-            (respuesta) => {
-                console.log(respuesta);
+        $.ajax({
+            type: "POST",
+            url: accion,
+            data: {PropietarioId},
+            success: (respuesta) => {
                 document.getElementById('Nombre1').value = respuesta[0].Nombre1;
                 document.getElementById('Nombre2').value = respuesta[0].Nombre2;
                 document.getElementById('Apellido1').value = respuesta[0].Apellido1;
@@ -98,7 +98,7 @@
                 document.getElementById('Telefono').value = respuesta[0].Telefono;
                 document.getElementById('PropietarioId').value = respuesta[0].PropietarioId;
             }
-        );
+        });
 
 
     }
