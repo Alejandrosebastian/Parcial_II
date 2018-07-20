@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Parcial_II.Models;
@@ -50,5 +51,7 @@ namespace Parcial_II.Data
         public DbSet<Parcial_II.Models.Tipos_inmu> Tipos_inmu { get; set; }
 
         public DbSet<Parcial_II.Models.Usuario> Usuario { get; set; }
+
+        public DbSet<IdentityRole> identityRole { get; set; }
     }
 }

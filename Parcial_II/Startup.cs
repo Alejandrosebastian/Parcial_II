@@ -40,7 +40,8 @@ namespace Parcial_II
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+            IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -63,6 +64,25 @@ namespace Parcial_II
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            CrearRoles(serviceProvider).Wait();
+        }
+
+        private async Task CrearRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            string[] NombreRoles = { "Administrador", "Usuario", "Secretaria" };
+            IdentityResult resultado;
+            foreach (var rol in NombreRoles)
+            {
+                var rolExits = await roleManager.RoleExistsAsync(rol);
+
+                if (!rolExits)
+                {
+                    resultado = await roleManager.CreateAsync(new IdentityRole(rol));
+                }
+            }
         }
     }
 }
