@@ -99,9 +99,9 @@ var CargaCliente = (ClienteId) => {
     var clsclien = new Claseclientejs('', '', '', '', '', '', '','','','','', accion);
     clsclien.CargarCliente(ClienteId);
 }
-<<<<<<< HEAD
 
-=======
+
+
 var grabaTipo_inmu = () => {
     var nombre = document.getElementById('nombre').value;
     var inmuId = document.getElementById('tipoinmuId').value;
@@ -117,7 +117,7 @@ var grabaTipo_inmu = () => {
     var graba = new ClaseTipoinmu(nombre, accion);
     graba.GuardarTipoinmu(inmuId);
 }
->>>>>>> f8b6b83b2181ce9db136b26e83061318d48e3bc3
+
 var ListaTipo_inmu = () => {
     var accion = 'Tipos_inmus/ControladorListaTipo_inmu';
     var tipoinmu = new ClaseTipoinmu('', accion);
