@@ -33,10 +33,27 @@ var guardaCliente = () => {
     } else {
         var accion = 'Clientes/ControladorEditarCliente';
     }
-    var graba = new Claseclientejs(cedula, primernombre, segundonombre, primerapellido, segundoapellido, telefono, correo, tipo_profe, importe_maximo, fecha_reg, ClienteId, accion)
+    var graba = new Claseclientejs(cedula, primernombre, segundonombre, primerapellido, segundoapellido, telefono, correo, tipo_profe, importe_maximo, fecha_reg, ClienteId, accion);
     graba.claseGuardarCliente(ClienteId);
 }
-
+var guardaContrato = () => {
+    var deposito = document.getElementById('deposito').value;
+    var Duracion = document.getElementById('Duracion').value;
+    var fecha_ini = document.getElementById('fecha_ini').value;
+    var fecha_vence = document.getElementById('fecha_vence').value;
+    var TipopagosId = document.getElementById('TipopagosId').value;
+    var SucursalId = document.getElementById('SucursalId').value;
+    var ClienteId = document.getElementById('ClienteId').value;
+    var ContratoId = document.getElementById('ContratoId').value;
+    if (ContratoId === '') {
+        ContratoId == '0';
+        var accion = 'Contratoes/ControladorGuardarContrato';
+    } else {
+        var accion = 'Contratoes/ControladorGuardarContrato';
+    }
+    var graba = new ClaseContrato(deposito, Duracion, fecha_ini, fecha_vence, TipopagosId, SucursalId, ClienteId, accion);
+    graba.ClaseContrato(ContratoId);
+}
 var guardarpropietario = () => {
     var Nombre1 = document.getElementById('Nombre1').value;
     var Nombre2 = document.getElementById('Nombre2').value;
@@ -82,6 +99,9 @@ var CargaCliente = (ClienteId) => {
     var clsclien = new Claseclientejs('', '', '', '', '', '', '','','','','', accion);
     clsclien.CargarCliente(ClienteId);
 }
+<<<<<<< HEAD
+
+=======
 var grabaTipo_inmu = () => {
     var nombre = document.getElementById('nombre').value;
     var inmuId = document.getElementById('tipoinmuId').value;
@@ -97,6 +117,7 @@ var grabaTipo_inmu = () => {
     var graba = new ClaseTipoinmu(nombre, accion);
     graba.GuardarTipoinmu(inmuId);
 }
+>>>>>>> f8b6b83b2181ce9db136b26e83061318d48e3bc3
 var ListaTipo_inmu = () => {
     var accion = 'Tipos_inmus/ControladorListaTipo_inmu';
     var tipoinmu = new ClaseTipoinmu('', accion);
