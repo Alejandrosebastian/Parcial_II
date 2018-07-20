@@ -36,7 +36,7 @@ namespace Parcial_ll.Controllers
             return claseinmu.ModeloGrabaTipos_inmu(nombre);
         }
 
-        public List<object[]> ControladorListaTipoinmu()
+        public List<object[]> ControladorListaTipo_inmu()
         {
             return claseinmu.ModeloListaTipoinmu();
         }

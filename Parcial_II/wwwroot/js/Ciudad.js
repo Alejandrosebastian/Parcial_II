@@ -29,7 +29,7 @@ class ClaseCiudad {
             $.ajax({
                 type: "POST",
                 url: accion,
-                data{
+                data: { 
                     Nombre,
                     id
                 },
@@ -47,8 +47,8 @@ class ClaseCiudad {
     listaindex() {
         var accion = this.accion;
         $.ajax({
-            type: "POST";
-            url: accion
+            type: "POST",
+            url: accion ,
             data: {},
             success: (respuesta) => {
                 $.each(respuesta, (index, va) => {
@@ -61,7 +61,7 @@ class ClaseCiudad {
 
     limpiarcajas(){
             document.getElementById('Nombre').value = '';
-            document.getElementById('CiudadId').value'';
+            document.getElementById('CiudadId').value='';
             $('#Ingresociudad').modal('hide');
             listaindex();
     }

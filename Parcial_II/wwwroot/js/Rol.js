@@ -25,7 +25,7 @@
             $.ajax({
                 type: "POST",
                 url: accion,
-                data{
+                data:{
                     Nombre,
                     id
                 },
@@ -43,8 +43,8 @@
     listaindex() {
         var accion = this.accion;
         $.ajax({
-            type: "POST";
-            url: accion
+            type: "POST",
+            url: accion ,
             data: {},
             success: (respuesta) => {
                 $.each(respuesta, (index, va) => {
@@ -57,7 +57,7 @@
 
     limpiarcajas() {
         document.getElementById('Nombre').value = '';
-        document.getElementById('RolId').value'';
+        document.getElementById('RolId').value = '';
         $('#Ingresorol').modal('hide');
         listaindex();
     }
