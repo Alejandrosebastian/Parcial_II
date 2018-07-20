@@ -35,6 +35,7 @@
                         correo},
                     success: (respuesta) => {
                         if (respuesta[0].code == 'save') {
+                            $('#IngresoPropietario').modal('hide');
                             this.limpiarcajaspro();
                         }
                     }
