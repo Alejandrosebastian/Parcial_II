@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,154 +14,32 @@ namespace Parcial_II.Controllers
     public class ContratoesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private ContratoModel claseContrato;
 
         public ContratoesController(ApplicationDbContext context)
         {
             _context = context;
+            claseContrato = new ContratoModel(context);
         }
 
         // GET: Contratoes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Contrato.Include(c => c.Cliente).Include(c => c.Sucursal);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Propietario.ToListAsync());
         }
-
-        // GET: Contratoes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        //public List<object[]>Controladorlistaindex()
+        //{
+          //  return clasecontrato.ModeloListaContrato();
+        //}
+        public List<IdentityError> ControladorGuardarContrato(int deposito, string duracion,
+            DateTime fecha_ini, DateTime fecha_vence, int tipopagoId, int sucursalId, int clienteId)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var contrato = await _context.Contrato
-                .Include(c => c.Cliente)
-                .Include(c => c.Sucursal)
-                .SingleOrDefaultAsync(m => m.ContratoId == id);
-            if (contrato == null)
-            {
-                return NotFound();
-            }
-
-            return View(contrato);
+            return claseContrato.ClaseGuardarContrato(deposito, duracion, fecha_ini, fecha_vence, tipopagoId, sucursalId, clienteId);
         }
-
-        // GET: Contratoes/Create
-        public IActionResult Create()
+        public List<Contrato>ControladorUnContrato(int ContId)
         {
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Correo");
-            ViewData["SucursalId"] = new SelectList(_context.Set<Sucursal>(), "SucursalId", "Direccion");
-            return View();
-        }
-
-        // POST: Contratoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContratoId,deposito,Duracion,fecha_ini,fecha_vence,TipopagosId,SucursalId,ClienteId")] Contrato contrato)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(contrato);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Correo", contrato.ClienteId);
-            ViewData["SucursalId"] = new SelectList(_context.Set<Sucursal>(), "SucursalId", "Direccion", contrato.SucursalId);
-            return View(contrato);
-        }
-
-        // GET: Contratoes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var contrato = await _context.Contrato.SingleOrDefaultAsync(m => m.ContratoId == id);
-            if (contrato == null)
-            {
-                return NotFound();
-            }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Correo", contrato.ClienteId);
-            ViewData["SucursalId"] = new SelectList(_context.Set<Sucursal>(), "SucursalId", "Direccion", contrato.SucursalId);
-            return View(contrato);
-        }
-
-        // POST: Contratoes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ContratoId,deposito,Duracion,fecha_ini,fecha_vence,TipopagosId,SucursalId,ClienteId")] Contrato contrato)
-        {
-            if (id != contrato.ContratoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(contrato);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ContratoExists(contrato.ContratoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "Correo", contrato.ClienteId);
-            ViewData["SucursalId"] = new SelectList(_context.Set<Sucursal>(), "SucursalId", "Direccion", contrato.SucursalId);
-            return View(contrato);
-        }
-
-        // GET: Contratoes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var contrato = await _context.Contrato
-                .Include(c => c.Cliente)
-                .Include(c => c.Sucursal)
-                .SingleOrDefaultAsync(m => m.ContratoId == id);
-            if (contrato == null)
-            {
-                return NotFound();
-            }
-
-            return View(contrato);
-        }
-
-        // POST: Contratoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var contrato = await _context.Contrato.SingleOrDefaultAsync(m => m.ContratoId == id);
-            _context.Contrato.Remove(contrato);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ContratoExists(int id)
-        {
-            return _context.Contrato.Any(e => e.ContratoId == id);
+            var contra = (from c in _context.Contrato where c.ContratoId == ContId select c).ToList();
+            return contra;
         }
     }
 }

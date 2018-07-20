@@ -32,7 +32,7 @@
                         apellido2,
                         direccion,
                         telefono,
-                        correo,},
+                        correo},
                     success: (respuesta) => {
                         if (respuesta[0].code == 'save') {
                             this.limpiarcajaspro();

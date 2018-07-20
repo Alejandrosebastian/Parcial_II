@@ -15,7 +15,7 @@ namespace Parcial_II.Models
         [Required(ErrorMessage = "Campo Requerido")]
         [Display(Name = "Duracion")]
         [StringLength(220, MinimumLength = 3, ErrorMessage = "la duracion debe estar entre 3 y 220 caracteres")]
-        public String Duracion { get; set; }
+        public string Duracion { get; set; }
         [Required(ErrorMessage = "Campo Requerido")]
         [Display(Name = "Fecha de inicio")]
         public DateTime fecha_ini { get; set; }

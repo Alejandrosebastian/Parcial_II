@@ -1,71 +1,147 @@
-﻿@model IEnumerable<Parcial_II.Models.Inmuebles>
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{ViewData["Title"] = "Imnuebles";
 }
 
-<h2>Index</h2>
+<h2>Lista de Inmuebles</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoInmueble">Ingreso Inmuebles</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.direccion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.N_habitaciones)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Costo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.activo)
-                </th>
             <th>
-                @Html.DisplayNameFor(model => model.Parroquia)
+                Direccion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Propietario)
+                Numero de Habitaciones
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tipos_inmu)
+                Costo
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Propietario
+            </th>
+            <th>
+               Parroquia
+            </th>
+            <th>
+                Tipo de inmueble
             </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.N_habitaciones)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Costo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.activo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Parroquia.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Propietario.Apellido1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipos_inmu.nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.InmueblesId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.InmueblesId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.InmueblesId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+    <tbody id="ListaInmueble"></tbody>
 </table>
+
+
+
+
+
+
+
+<div class="modal fade" id="IngresoInmueble" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" cl@{
+                            ass="close"
+                            data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>*@
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Inmuebles
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Direccion del inmueble</label>
+                        <input id="direccion" name="direccion" class="form-control" placeholder="ingrese la direccion del inmueble" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Numero de habitaciones del inmueble</label>
+                        <input id="nhabitacion" name="nhabitacion" class="form-control" placeholder="ingrese el numero de habitaciones del inmueble" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">costo del inmueble</label>
+                        <input id="costo" name="costo" class="form-control" placeholder="costo la direccion del inmueble" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Estado del inmueble</label>
+                        <input id="activo" name="activo" class="form-control" placeholder="ingrese el estado del inmueble" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Propietario del inmueble</label>
+                        <input id="pro" name="pro" class="form-control" placeholder="ingrese el propietario del inmueble" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Parroquia del inmueble</label>
+                        <input id="parro" name="parro" class="form-control" placeholder="ingrese la parroquia a la que pertenese el inmueble" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tipo del inmueble</label>
+                        <input id="tipo" name="tipo" class="form-control" placeholder="ingrese el tipo del inmueble" />
+                    </div>
+                    <input id="id" name="id" hidden />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="grabaInmueble()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ImpresionTipoinmu" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document" id="areaImprimir">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Reportes del Inmueble
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr class="danger">
+                                <td>Id Inmubles</td>
+                                <td>Direccion</td>
+                                <td>N habitacion</td>
+                                <td>costo</td>
+                                <td>activo</td>
+                                <td>Propietario</td>
+                                <td>Parroquia</td>
+                                <td>Tipo de Inmueble</td>
+                            </tr>
+                        </thead>
+                        <tbody id="CuerpoImpresionInmueble"> </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="ImpresionImnueble()">
+                    Imprimir
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

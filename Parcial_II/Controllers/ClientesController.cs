@@ -25,21 +25,20 @@ namespace Parcial_II.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Cliente.ToListAsync());
         }
+
         public List<object[]> Controladorlistaindexcliente()
         {
             return claseclientemodel.ModeloListaCliente();
         }
-        public List<IdentityError> ControladorGuardarCliente
-           (
-           int Cedula, string Primernombre, string Segundonombre,
-           string Primerapellido, string Segundoapellido, int Telefono,
-           string Correo, string Tipo_prefe_inmueble, int Importe_maximo, DateTime Fecha_registro
-           )
+        public List<IdentityError> ControladorGuardarCliente (int Cedula, string Primernombre, string Segundonombre,
+           string Primerapellido, string Segundoapellido, int Telefono,string Correo, string Tipo_prefe_inmueble, 
+           int Importe_maximo, DateTime Fecha_registro, int ClienteId)
         {
             return claseclientemodel.ClaseGuardarCliente
-                (Cedula, Primernombre, Segundonombre, Primerapellido, Segundoapellido, Telefono, Correo, Tipo_prefe_inmueble, Importe_maximo, Fecha_registro);
+                (Cedula, Primernombre, Segundonombre, Primerapellido, 
+                Segundoapellido, Telefono, Correo, Tipo_prefe_inmueble, Importe_maximo, Fecha_registro, ClienteId);
         }
 
 
