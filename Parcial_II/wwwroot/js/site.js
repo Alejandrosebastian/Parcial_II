@@ -60,6 +60,18 @@ var grabaPropietario = () => {
     graba.guardarpropietario(PropietarioId);
 
 }
+var guardaCiudad = () => {
+    var Nombre = document.getElementById('Nombre').value;
+    var CiudadId = document.getElementById('CiudadId').value;
+    if (CiudadId == '') {
+        CiudadId = '0';
+        var accion = 'Ciudads/ControladorGuardaCiudad';
+    } else {
+        var accion=
+    }
+    var graba = new ClaseCiudad(Nombre, accion);
+    graba.guardaciudad(CiudadId);
+}
 
 var Cargapropie = (PropietarioId) => {
     var accion = 'Propietarios/ControladorUnpropi';

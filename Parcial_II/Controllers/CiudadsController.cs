@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Parcial_II.Data;
 using Parcial_II.Models;
 
@@ -13,16 +14,26 @@ namespace Parcial_II.Controllers
     public class CiudadsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private CiudadModels claseciudad;
 
         public CiudadsController(ApplicationDbContext context)
         {
             _context = context;
+            claseciudad = new CiudadModels(context);
+            
         }
-
         // GET: Ciudads
         public async Task<IActionResult> Index()
         {
             return View(await _context.Ciudad.ToListAsync());
+        }
+        public List<object[]> Controladorlistaindexciud()
+        {
+            return claseciudad.ModeloListaCiudad();
+        }
+        public List<IdentityError> ControladorGuardaCiudad(string Nombre)
+        {
+            return claseciudad.ClaseGuardarCiudad(Nombre);
         }
 
         // GET: Ciudads/Details/5
