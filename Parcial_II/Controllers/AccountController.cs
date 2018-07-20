@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Parcial_II.Models;
 using Parcial_II.Models.AccountViewModels;
 using Parcial_II.Services;
+using Parcial_II.Data;
 
 namespace Parcial_II.Controllers
 {
@@ -24,17 +25,20 @@ namespace Parcial_II.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _contexto;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _contexto = context;
         }
 
         [TempData]
@@ -208,8 +212,10 @@ namespace Parcial_II.Controllers
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
+            RegisterViewModel r = new RegisterViewModel();
+            r.obtenerRoles(_contexto);
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            return View(r);
         }
 
         [HttpPost]
