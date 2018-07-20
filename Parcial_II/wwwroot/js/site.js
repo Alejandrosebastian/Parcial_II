@@ -212,17 +212,30 @@ var grabaEmpleado = () => {
     graba.GuardarEmpleado(EmpleadoId);
 }
 
-    var guardaRol = () => {
-        var Nombre = document.getElementById('Nombre').value;
-        var RolId = document.getElementById('RolId').value;
-        if (RolId == '')
-        {
-            RolId = '0';
-            var accion = 'Rols/ControladorGuardaRol';
-        } else
-        {
-            var accion = '';
-        }
-        var graba = new ClaseRol(Nombre, accion);
-        graba.guardarol(CiudadId);
+ 
+var sitelistaindexrol = () => {
+    var accion = 'Rols/Controladorlistaindexrol';
+    var clspropie = new ClaseRol('', accion);
+    clsrol.listaindex();
+}
+
+var guardarrol = () => {
+    var Nombre = document.getElementById('Nombre').value;
+    var RolId = document.getElementById('RolId').value;
+    if (RolId === '') {
+        RolId = '0';
+        var accion = 'Rols/ControladorGuardaRol';
+    } else {
+
+        var accion = 'Rols/ControladorEditarol';
     }
+    var graba = new ClaseRol(Nombre, accion);
+    graba.guardarrol(RolId);
+
+}
+
+var Cargarol = (RolId) => {
+    var accion = 'Rols/ControladorUnrol';
+    var clsrol = new ClaseRol('',  accion)
+    clsrol.Cargarrol(RolId);
+}
