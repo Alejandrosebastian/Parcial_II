@@ -9,10 +9,6 @@ $().ready(() => {
 
 });
 
-
-
-
-
 var sitelistaindexpro = () => {
     var accion = 'Propietarios/Controladorlistaindexpro';
     var clspropie = new ClasePropietario('', '', '', '', '', '', '', accion);
