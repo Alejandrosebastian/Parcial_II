@@ -1,13 +1,17 @@
 ﻿
+@model IEnumerable<Parcial_II.Models.Empleado>
+
 @{
-    ViewData["Title"] = "Empleados";
+    ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Empleados</h2>
 
 <p>
-    <a href="#" data-toggle="modal" data-target="#IngresoEmpleados">Ingreso Empleados</a>
+
+    <a href="#" data-toggle="modal" data-target="#IngreseEmpleado">Ingrese datos Empleados</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -36,22 +40,22 @@
                 Fecha_nacimiento
             </th>
             <th>
-                Edad
+                edad
             </th>
             <th>
-                CategoriaLaboralId
+                usuario
             </th>
             <th>
-                Usuario
+                categorialaboral
             </th>
-            <th></th>
         </tr>
     </thead>
-    <tbody id="ListaEmpleados"></tbody>
+    <tbody id=""></tbody>
 </table>
 
 
-<div class="modal fade" id="IngresoEmpleado" tabindex="-1" role="dialog" aria-labelledby="EtiquetaModal">
+
+<div class="modal fade" id="IngreseEmpleado" tabindex="-1" role="dialog" aria-labelledby="EtiquetaModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -61,7 +65,7 @@
                 </button>
                 <h4 class="modal-title"
                     id="EtiquetaModal">
-                    Empleados
+                    Propietarios
                 </h4>
             </div>
             <div class="modal-body">
@@ -112,7 +116,6 @@
                         <input id="CategoriaLaboralId" name="CategoriaLaboralId"
                                placeholder="Ingrese la categoria Laboral"
                                class="form-control" />
-
                         <input id="EmpleadoId" name="EmpleadoId" hidden />
                     </div>
 
@@ -127,3 +130,8 @@
         </div>
     </div>
 </div>
+
+
+
+
+
