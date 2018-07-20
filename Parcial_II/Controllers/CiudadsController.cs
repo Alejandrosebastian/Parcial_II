@@ -35,7 +35,11 @@ namespace Parcial_II.Controllers
         {
             return claseciudad.ClaseGuardarCiudad(Nombre);
         }
-
+        public List<Ciudad> ControlunaCiudad(int Ciuid)
+        {
+            var ciu = (from c in _context.Ciudad where c.CiudadId == Ciuid select c).ToList();
+            return ciu;
+        }
         // GET: Ciudads/Details/5
         public async Task<IActionResult> Details(int? id)
         {
