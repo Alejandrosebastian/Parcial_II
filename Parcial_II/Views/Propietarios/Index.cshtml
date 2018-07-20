@@ -1,71 +1,103 @@
-﻿@model IEnumerable<Parcial_II.Models.Propietario>
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "Tipos de inmuebles";
 }
 
-<h2>Index</h2>
-
+<h2>Lista de Propietarios</h2>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoPropietario">Ingrese propietario</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nombre1)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nombre2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Apellido1)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Apellido2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Direccion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Correo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Telefono)
-                </th>
+            <th>
+                Nombre1
+            </th>
+            <th>
+                Nombre2
+            </th>
+            <th>
+                Apellido1
+            </th>
+            <th>
+                Apellido2
+            </th>
+            <th>
+                Direccion
+            </th>
+            <th>
+                Correo
+            </th>
+            <th>
+                Telefono
+            </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PropietarioId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PropietarioId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PropietarioId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+    <tbody id="Listapropietario"></tbody>
 </table>
+
+
+
+
+
+<div class="modal fade" id="IngresoPropietario" tabindex="-1" role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Propietarios
+                </h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Primer nombre</label>
+                        <input id="Nombre1" name="Nombre1"
+                               placeholder="Ingrese el sexo"
+                               class="form-control" />
+                        <label class="control-label">Segundo nombre</label>
+                        <input id="Nombre2" name="Nombre2"
+                               placeholder="Ingrese el sexo"
+                               class="form-control" />
+                        <label class="control-label">Primer apellido</label>
+                        <input id="Apellido1" name="Apellido1"
+                               placeholder="Ingrese el sexo"
+                               class="form-control" />
+                        <label class="control-label">Segundo apellido</label>
+                        <input id="Apellido2" name="Apellido2"
+                               placeholder="Ingrese el sexo"
+                               class="form-control" />
+                        <label class="control-label">Direccion</label>
+                        <input id="Direccion" name="Direccion"
+                               placeholder="Ingrese el sexo"
+                               class="form-control" />
+                        <label class="control-label">Telefono</label>
+                        <input id="Correo" name="Correo"
+                               placeholder="Ingrese el sexo"
+                               class="form-control" />
+                        <label class="control-label">Correo</label>
+                        <input id="Telefono" name="Telefono"
+                               placeholder="Ingrese el sexo"
+                               class="form-control" />
+                       
+                        <input id="PropietarioId" name="PropietarioId" hidden />
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="grabaPropietario()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
