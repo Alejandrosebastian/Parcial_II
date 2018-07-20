@@ -42,10 +42,10 @@ namespace Parcial_ll.Controllers
         }
         public List<Tipos_inmu> ControladorUnTipoinmu(int tipoinmuId)
         {
-            //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
-            var sexo = (from t in _context.Tipos_inmu
-                        where t.Tipos_inmuId == tipoinmuId
-                        select t).ToList();
+            var sexo = _context.Tipos_inmu.Where(s => s.Tipos_inmuId == tipoinmuId).ToList();
+            //var sexo = (from t in _context.Tipos_inmu
+            //            where t.Tipos_inmuId == tipoinmuId
+            //            select t).ToList();
             return sexo;
         }
 

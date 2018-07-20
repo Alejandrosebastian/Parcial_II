@@ -28,7 +28,7 @@ namespace Parcial_II.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        public List<IdentityError> ControladorGuardaInmueble(String Direccion, String Nhabitcion, int cos, int Tipo, int Propio, int Parro, Boolean Activo)
+        public List<IdentityError> ControladorGuardaInmueble(string Direccion, string Nhabitcion, int cos, int Tipo, int Propio, int Parro, Boolean Activo)
         {
             return claseinmuebles.ModeloGrabaInmueble(Direccion, Nhabitcion, cos, Tipo, Propio, Parro, Activo);
         }

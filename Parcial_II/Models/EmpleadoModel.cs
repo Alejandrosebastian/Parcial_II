@@ -14,11 +14,11 @@ namespace Parcial_II.Models
         {
             _contexto = contexto;
         }
-        public List<IdentityError> ModeloGrabaEmpleado(string primernombre, string segundonombre, string primerapellido, string segundoapellido, string direccion,
-        string salario,
-        string correo,
-         DateTime fecha_nacimiento,
-          int edad,
+        public List<IdentityError> ModeloGrabaEmpleado(string PrimerNombre, string SegundoNombre, string PrimerApellido, string SegundoApellido, string Direccion,
+        string Salario,
+        string Correo,
+         DateTime Fecha_nacimiento,
+          int Edad,
           int UsuarioId,
           int Categoria_LaboralId)
         {
@@ -27,15 +27,15 @@ namespace Parcial_II.Models
             IdentityError dato = new IdentityError();
             var objetoempleado = new Empleado
             {
-                PrimerNombre = primernombre,
-                SegundoNombre = segundonombre,
-                PrimerApellido = primerapellido,
-                SegundoApellido = segundoapellido,
-                Direccion = direccion,
-                Salario = salario,
-                Correo = correo,
-                Fecha_nacimiento = fecha_nacimiento,
-                Edad = edad,
+                PrimerNombre = PrimerNombre,
+                SegundoNombre = SegundoNombre,
+                PrimerApellido = PrimerApellido,
+                SegundoApellido = SegundoApellido,
+                Direccion = Direccion,
+                Salario = Salario,
+                Correo = Correo,
+                Fecha_nacimiento = Fecha_nacimiento,
+                Edad = Edad,
                 UsuarioId=UsuarioId, 
                CategoriaLaboralId=Categoria_LaboralId,
 
@@ -102,7 +102,7 @@ namespace Parcial_II.Models
                     "<td>" + item.Edad + "</td>" +
                     "<td>" + item.UsuarioId + "</td>" +
                     "<td>" + item.CategoriaLaboralId + "</td>" +
-                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoPropietario' onclick='Cargaemple(" + item.EmpleadoId + ")'>Editar</a>" +
+                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoEmpleado' onclick='Cargaemple(" + item.EmpleadoId + ")'>Editar</a>" +
                     //  "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionTipoinmu' onclick='CargaParaImpresionTipoinmu();'>Imprimir</a>" +
 
                     "</td></tr>";
