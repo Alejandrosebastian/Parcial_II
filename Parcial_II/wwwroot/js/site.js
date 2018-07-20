@@ -19,6 +19,26 @@ var sitelistaindexpro = () => {
     clspropie.listaindex();
 }
 
+var guardaCliente = () => {
+    var cedula = document.getElementById('Cedula').value;
+    var primernombre = document.getElementById('Primernombre').value;
+    var segundonombre = document.getElementById('Segundonombre').value;
+    var primerapellido = document.getElementById('Primerapellido').value;
+    var segundoapellido = document.getElementById('Segundoapellido').value;
+    var telefono = document.getElementById('Telefono').value;
+    var correo = document.getElementById('Correo').value;
+    var tipo_profe = document.getElementById('Tipo_prefe_inmueble').value;
+    var importe_maximo = document.getElementById('Importe_maximo').value;
+    var fecha_reg = document.getElementById('Fecha_registro').value;
+    if (ClienteId === '') {
+        ClienteId == '0';
+        var accion = 'Clientes/ControladorGuardarCliente';
+    } else {
+        var accion = 'Clientes/ControladorGuardarCliente';
+    }
+    var graba = new Claseclientejs(cedula, primernombre, segundonombre, primerapellido, segundoapellido, telefono, correo, tipo_profe, importe_maximo, fecha_reg, accion)
+    graba.claseGuardarCliente(ClienteId);
+}
 
 var grabaPropietario = () => {
     var Nombre1 = document.getElementById('Nombre1').value;

@@ -1,89 +1,109 @@
-﻿@model IEnumerable<Parcial_II.Models.Cliente>
-
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoClientes">Ingreso Clientes</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cedula)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Primernombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Segundonombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Primerapellido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Segundoapellido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Telefono)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Correo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tipo_prefe_inmueble)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Importe_maximo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Fecha_registro)
-                </th>
+            <th>
+                Cedula
+            </th>
+            <th>
+                Primernombre
+            </th>
+            <th>
+                Segundonombre
+            </th>
+            <th>
+                Primerapellido
+            </th>
+            <th>
+                Segundoapellido
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Correo
+            </th>
+            <th>
+                Tipo_prefe_inmueble
+            </th>
+            <th>
+                Importe_maximo
+            </th>
+            <th>
+                Fecha_registro
+            </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cedula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Primernombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Segundonombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Primerapellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Segundoapellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo_prefe_inmueble)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Importe_maximo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_registro)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+    <tbody id="ListaClientes"></tbody>
 </table>
+
+<div class="modal fade" id="IngresoClientes" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Clientes
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">cedula</label>
+                        <input id="Cedula" name="Cedula" class="form-control" placeholder="ingrese la cedula" />
+
+                        <label class="control-label">Primer nombre</label>
+                        <input id="Primernombre" name="Primernombre" class="form-control" placeholder="ingrese el primer nombre" />
+
+                        <label class="control-label">Segundo Nombre</label>
+                        <input id="Segundonombre" name="Segundonombre" class="form-control" placeholder="ingrese el segundo nombre" />
+
+                        <label class="control-label">Primer apellido</label>
+                        <input id="Primerapellido" name="Primerapellido" class="form-control" placeholder="ingrese el apellido paterno" />
+
+                        <label class="control-label">Segundo apellido</label>
+                        <input id="Segundoapellido" name="Segundoapellido" class="form-control" placeholder="ingrese el apellido materno" />
+
+                        <label class="control-label">Telefono</label>
+                        <input id="Telefono" name="Telefono" class="form-control" placeholder="ingrese el telefono" />
+
+                        <label class="control-label">Correo</label>
+                        <input id="Correo" name="Correo" class="form-control" placeholder="ingrese el correo" />
+
+                        <label class="control-label">Tipo Preferencia</label>
+                        <input id="Tipo_prefe_inmueble" name="Tipo_prefe_inmueble" class="form-control" placeholder="ingrese el tipo de inmueble" />
+
+                        <label class="control-label">Importe maximo</label>
+                        <input id="Importe_maximo" name="Importe_maximo" class="form-control" placeholder="ingrese el ingreso maximo" />
+
+                        <label class="control-label">Fecha Registro</label>
+                        <input id="Fecha_registro" name="Fecha_registro" class="form-control" placeholder="ingrese la fecha" />
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="guardaCliente()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
