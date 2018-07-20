@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -24,139 +25,37 @@ namespace Parcial_II.Controllers
         // GET: Empleadoes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Empleado.Include(e => e.Usuario);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Empleado.ToListAsync());
         }
 
-        // GET: Empleadoes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<object[]> Controladorlistaindexpro()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empleado = await _context.Empleado
-                .Include(e => e.Usuario)
-                .SingleOrDefaultAsync(m => m.EmpleadoId == id);
-            if (empleado == null)
-            {
-                return NotFound();
-            }
-
-            return View(empleado);
+            return claseEmpleado.ModeloListaempleado();
         }
 
-        // GET: Empleadoes/Create
-        public IActionResult Create()
+        public List<IdentityError> ControladorGuardaEmpleado(string primernombre, string segundonombre, string primerapellido, string segundoapellido, string direccion,
+           string salario,
+           string correo,
+            DateTime fecha_nacimiento,
+             int edad,int UsuarioId,int Categoria_LaboralId)
         {
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Clave");
-            return View();
+            return claseEmpleado.ModeloGrabaEmpleado(primernombre,segundonombre,primerapellido,segundoapellido,direccion,salario,correo,fecha_nacimiento,edad,UsuarioId,Categoria_LaboralId);
         }
 
-        // POST: Empleadoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpleadoId,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido,Direccion,Salario,Correo,Fecha_nacimiento,Edad,UsuarioId,CategoriaLaboralId")] Empleado empleado)
+        public List<Empleado> ControladorUnemple(int EmpleId)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(empleado);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Clave", empleado.UsuarioId);
-            return View(empleado);
+            var propie = (from p in _context.Empleado where p.EmpleadoId == EmpleId select p).ToList();
+            return propie;
         }
-
-        // GET: Empleadoes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> ControladorEditarEmpleado(string primernombre, string segundonombre, string primerapellido, string segundoapellido, string direccion,
+        string salario,
+        string correo,
+         DateTime fecha_nacimiento,
+          int edad,
+          int UsuarioId,
+          int Categoria_LaboralId,int EmpleadoId)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empleado = await _context.Empleado.SingleOrDefaultAsync(m => m.EmpleadoId == id);
-            if (empleado == null)
-            {
-                return NotFound();
-            }
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Clave", empleado.UsuarioId);
-            return View(empleado);
-        }
-
-        // POST: Empleadoes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmpleadoId,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido,Direccion,Salario,Correo,Fecha_nacimiento,Edad,UsuarioId,CategoriaLaboralId")] Empleado empleado)
-        {
-            if (id != empleado.EmpleadoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(empleado);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EmpleadoExists(empleado.EmpleadoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Clave", empleado.UsuarioId);
-            return View(empleado);
-        }
-
-        // GET: Empleadoes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empleado = await _context.Empleado
-                .Include(e => e.Usuario)
-                .SingleOrDefaultAsync(m => m.EmpleadoId == id);
-            if (empleado == null)
-            {
-                return NotFound();
-            }
-
-            return View(empleado);
-        }
-
-        // POST: Empleadoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var empleado = await _context.Empleado.SingleOrDefaultAsync(m => m.EmpleadoId == id);
-            _context.Empleado.Remove(empleado);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool EmpleadoExists(int id)
-        {
-            return _context.Empleado.Any(e => e.EmpleadoId == id);
+            return claseEmpleado.Modaleditaremple(primernombre, segundonombre, primerapellido, segundoapellido, direccion, salario, correo, fecha_nacimiento, edad, UsuarioId, Categoria_LaboralId,EmpleadoId);
         }
     }
 }

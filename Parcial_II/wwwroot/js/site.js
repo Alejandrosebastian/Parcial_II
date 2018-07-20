@@ -178,4 +178,29 @@ var CargaParaImpresionInmueble = () => {
     var accion = 'Inmuebles/ContronladorImprimirInmueble';
     var carga = new ClaseInmueble('', accion);
     carga.ImprimirInmuebe();
+} 
+
+var grabaEmpleado= () => {
+    var PrimerNombre = document.getElementById('Nombre1').value;
+    var SegundoNombre = document.getElementById('Nombre2').value;
+    var PrimerApellido = document.getElementById('Apellido1').value;
+    var SegundoApellido = document.getElementById('Apellido2').value;
+    var Direccion = document.getElementById('Direccion').value; 
+    var Salario = document.getElementById('Direccion').value;
+    var Fecha_nacimiento = document.getElementById('Correo').value;
+    var Edad = document.getElementById('Telefono').value; 
+    var UsuarioId = document.getElementById('Telefono').value;  
+    var CategoriaLaboralId = document.getElementById('Telefono').value; 
+    var EmpleadoId = document.getElementById('EmpleadoId').value;
+    if (EmpleadoId === '') {
+        EmpleadoId = '0';
+        var accion = 'Propietarios/ControladorGuardaPropietario'; 
+        var accion = 'Empleado/ControladorGuardaEmpleado';
+    } else {
+
+        var accion = 'Propietarios/ControladorEditapropi';
+    }
+    var graba = new ClasePropietario(Nombre1, Nombre2, Apellido1, Apellido2, Direccion, Correo, Telefono, accion);
+    graba.guardarpropietario(PropietarioId);
+
 }
