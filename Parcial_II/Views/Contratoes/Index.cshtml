@@ -1,71 +1,91 @@
-﻿@model IEnumerable<Parcial_II.Models.Contrato>
-
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoContratos">Ingreso Clientes</a>
 </p>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.deposito)
+                   deposito
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Duracion)
+                   Duracion
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.fecha_ini)
+                   fecha_ini
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.fecha_vence)
+                   fecha_vence
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TipopagosId)
+                   Tipopagos
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cliente)
+               Cliente
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sucursal)
+               Sucursal
             </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.deposito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duracion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha_ini)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha_vence)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipopagosId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sucursal.Direccion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ContratoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ContratoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ContratoId">Delete</a>
-            </td>
-        </tr>
-}
+    <tbody id="ListaContratos">
     </tbody>
 </table>
+<div class="modal fade" id="IngresoContratos" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Contratos
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">deposito</label>
+                        <input id="deposito" name="deposito" class="form-control" placeholder="ingrese el deposito" />
+
+                        <label class="control-label">Duracion</label>
+                        <input id="Duracion" name="Duracion" class="form-control" placeholder="ingrese el tiempo de contrato" />
+
+                        <label class="control-label">fecha inicio</label>
+                        <input id="fecha_ini" name="fecha_ini" class="form-control" placeholder="ingrese la fecha de inicio" />
+
+                        <label class="control-label">fecha vence</label>
+                        <input id="fecha_vence" name="fecha_vence" class="form-control" placeholder="ingrese la fecha de vencimiento" />
+
+                        <label class="control-label">Tipo Pagos</label>
+                        <input id="TipopagosId" name="TipopagosId" class="form-control" placeholder="ingrese tipo de pago" />
+
+                        <label class="control-label">Cliente</label>
+                        <input id="ClienteId" name="ClienteId" class="form-control" placeholder="ingrese el Cliente" />
+
+                        <label class="control-label">Sucursal</label>
+                        <input id="SucursalId" name="SucurusalId" class="form-control" placeholder="ingrese el la sucursal" />
+
+                       <input id="ContratoId" name="ContratoId" hidden />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="guardaContrato()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

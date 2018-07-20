@@ -1,4 +1,39 @@
-﻿@{ViewData["Title"] = "Tipos de inmuebles";
+﻿@*@model IEnumerable<Parcial_II.Models.Tipos_inmu>
+
+    @{
+        ViewData["Title"] = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Tipos_inmuId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Tipos_inmuId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Tipos_inmuId">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
+@{ViewData["Title"] = "Tipos de inmuebles";
 }
 
 <h2>Lista de Tipos de inmuebles</h2>
@@ -96,4 +131,4 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
